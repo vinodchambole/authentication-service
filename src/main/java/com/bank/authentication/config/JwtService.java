@@ -35,10 +35,14 @@ public class JwtService {
     }
 
     public String generateToken(UserDetails userDetails) {
+        return generateToken(getClaims(userDetails), userDetails);
+    }
+
+    private static HashMap<String, Object> getClaims(UserDetails userDetails) {
         HashMap<String, Object> extraClaims = new HashMap<>();
-        extraClaims.put("role", userDetails.getAuthorities().stream().findFirst().get());
+        extraClaims.put("role", userDetails.getAuthorities().stream().findFirst().get().getAuthority());
         extraClaims.put("userName", userDetails.getUsername());
-        return generateToken(extraClaims, userDetails);
+        return extraClaims;
     }
 
     public String generateToken(
@@ -51,7 +55,7 @@ public class JwtService {
     public String generateRefreshToken(
             UserDetails userDetails
     ) {
-        return buildToken(new HashMap<>(), userDetails, refreshExpiration);
+        return buildToken(getClaims(userDetails), userDetails, refreshExpiration);
     }
 
     private String buildToken(
