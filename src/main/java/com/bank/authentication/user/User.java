@@ -10,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.sql.Date;
 import java.util.Collection;
 import java.util.List;
 
@@ -31,11 +32,29 @@ public class User implements UserDetails {
   @Column(nullable = false)
   private String lastname;
 
-  @Column(unique = true)
+  @Column(nullable = false)
+  private Date dateOfBirth;
+
+  @Column(unique = true, nullable = false)
   private String email;
 
   @Column(nullable = false)
+  private String phoneNumber;
+
+  @Column(nullable = false)
+  private String address;
+
+  @Column(nullable = false)
   private String password;
+
+  @Column(unique = true)
+  private String aadharNumber;
+
+  @Column(unique = true, nullable = false)
+  private String panNumber;
+
+  @Column(nullable = false)
+  private String gender;
 
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
