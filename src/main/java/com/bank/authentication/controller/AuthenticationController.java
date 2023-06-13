@@ -1,5 +1,9 @@
-package com.bank.authentication.auth;
+package com.bank.authentication.controller;
 
+import com.bank.authentication.auth.AuthenticationRequest;
+import com.bank.authentication.auth.AuthenticationResponse;
+import com.bank.authentication.auth.AuthenticationService;
+import com.bank.authentication.auth.RegisterRequest;
 import com.bank.authentication.user.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

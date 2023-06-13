@@ -1,4 +1,4 @@
-package com.bank.authentication.auth;
+package com.bank.authentication.controller;
 
 
 import com.bank.authentication.user.User;
