@@ -69,14 +69,16 @@ public class AuthenticationService {
     }
 
     private void saveUserToken(User user, String jwtToken) {
-        var token = Token.builder()
-                .user(user)
-                .token(jwtToken)
-                .tokenType(TokenType.BEARER)
-                .expired(false)
-                .revoked(false)
-                .build();
-        tokenRepository.save(token);
+        if (!tokenRepository.findByToken(jwtToken).isPresent()) {
+            var token = Token.builder()
+                    .user(user)
+                    .token(jwtToken)
+                    .tokenType(TokenType.BEARER)
+                    .expired(false)
+                    .revoked(false)
+                    .build();
+            tokenRepository.save(token);
+        }
     }
 
     private void revokeAllUserTokens(User user) {
